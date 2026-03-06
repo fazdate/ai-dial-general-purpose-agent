@@ -61,4 +61,25 @@ services:
       DIAL_URL: "http://core:8080"
       LOG_LEVEL: "INFO"
 
+  ddg-search:
+    image: khshanovskyi/ddg-mcp-server:latest
+    ports:
+      - "8051:8000"
+    environment:
+      LOG_LEVEL: "INFO"
+      MCP_TRANSPORT: "streamable-http"
+    restart: unless-stopped
+    mem_limit: 512M
+    cpus: 0.5
+
+  python-interpreter:
+    image: khshanovskyi/python-code-interpreter-mcp-server:latest
+    ports:
+      - "8050:8000"
+    environment:
+      LOG_LEVEL: "INFO"
+    restart: unless-stopped
+    mem_limit: 2G
+    cpus: 2.0
+
 
